@@ -252,6 +252,13 @@ void PrintQuotedValue(const char *name, const char* str) {
   STDOUT.write('\n');
 }
 
+// CUSTOM OUR STUFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+#define BLADE_UP    7 // Free1
+#define BLADE_DOWN  8 // Free2
+#define UP_BUTT     13 //Button2
+#define DOWN_BUTT   15 //Button3
+
+
 #ifdef ENABLE_DEBUG
 
 // This class is really useful for finding crashes
@@ -1452,6 +1459,15 @@ void setup() {
   // Serial.blockOnOverrun(false);
 #endif
 
+// CUSTOM PARTS 
+//pinMode(BLADE_UP, OUTPUT);
+//pinMode(BLADE_DOWN, OUTPUT);
+//digitalWrite(BLADE_UP, LOW);
+//digitalWrite(BLADE_DOWN, LOW);
+//pinMode(UP_BUTT, INPUT);
+//pinMode(DOWN_BUTT, INPUT);
+
+
   // Wait for all voltages to settle.
   // Accumulate some entrypy while we wait.
   uint32_t now = millis();
@@ -1537,6 +1553,19 @@ MTPStorage_SerialFlash serialflash_storage(&mtpd);
 #include "common/clock_control.h"
 
 void loop() {
+
+// CUSTOM 
+//if (digitalRead(UP_BUTT)==HIGH && digitalRead(DOWN_BUTT)==LOW){
+//  Serial.write("up!");
+////  digitalWrite(BLADE_DOWN, LOW);
+////  digitalWrite(BLADE_UP, HIGH);
+//}
+//else if (digitalRead(DOWN_BUTT)==HIGH && digitalRead(UP_BUTT)==LOW){
+////  digitalWrite(BLADE_UP, LOW);
+////  digitalWrite(BLADE_DOWN, HIGH);
+//  Serial.write("down!");
+//}
+  
 #ifdef MTP_RX_ENDPOINT
   mtpd.loop();
 #endif
