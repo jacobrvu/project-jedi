@@ -16,8 +16,6 @@ const unsigned int maxLedsPerStrip = 144;
 #include "../props/saber_fett263_buttons.h"
 #include "../props/spinning_lightsaber.h"  // Include our custom prop
 #endif
-// config.h for ProffieOS
-// Make sure this is included in your ProffieOS installation
 
 // Define blade configurations for ProffieOS
 BladeConfig blades[] = {
@@ -58,31 +56,6 @@ Preset presets[] = {
 };
 
 
-// BladeConfig blades[] = {
-//  { 0, WS281XBladePtr<144, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(), CONFIGARRAY(presets) },
-// };
-// #endif
-
-// #ifdef CONFIG_BUTTONS
-// Button PowerButton(BUTTON_POWER, powerButtonPin, "pow");
-// // Button AuxButton(BUTTON_AUX, auxPin, "aux");
-// #endif
-
-// #ifdef CONFIG_TOP
-// #include "proffieboard_v3_config.h"
-// #define NUM_BLADES 1
-// #define NUM_BUTTONS 1
-// #define VOLUME 1000
-// const unsigned int maxLedsPerStrip = 144;
-// #define CLASH_THRESHOLD_G 1.0
-// #define ENABLE_AUDIO
-// #define ENABLE_MOTION
-// #define ENABLE_WS2811
-// #define ENABLE_SD
-// #endif
-
-
-
 struct myLED {
     static constexpr float MaxAmps = 1;
     static constexpr float MaxVolts = 15; 
@@ -94,6 +67,7 @@ struct myLED {
     static const int Blue = 255;
 };
 
+
 BladeConfig blades[] = {
  { 0, SimpleBladePtr<myLED, NoLED, NoLED, NoLED, bladePowerPin1, bladePowerPin2, bladePowerPin3, bladePowerPin4>(), 
  CONFIGARRAY(presets)}
@@ -102,6 +76,7 @@ BladeConfig blades[] = {
 #endif
 // CONFIGARRAY(presets) 
 // SimpleBladePtr<LED1, LED2, LED3, LED4, pin1, pin2, pin3, pin4>
+
 
 #ifdef CONFIG_BUTTONS
 Button PowerButton(BUTTON_POWER, powerButtonPin, "pow");
