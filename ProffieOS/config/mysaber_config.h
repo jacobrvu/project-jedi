@@ -17,21 +17,10 @@ const unsigned int maxLedsPerStrip = 144;
 #include "../props/spinning_lightsaber.h"  // Include our custom prop
 #endif
 
-// Define blade configurations for ProffieOS
-BladeConfig blades[] = {
-  // LED1 strip as first blade - simple on/off (no PWM)
-  { bladePin, CONFIGARRAY(simple_blade) },
-  
-  // LED2 strip as second blade - simple on/off (no PWM)
-  { blade2Pin, CONFIGARRAY(simple_blade) },
-  
-  // LED3-5 for motors (using PWM capability of blade pins)
-  { blade3Pin, CONFIGARRAY(simple_pwm_blade) },
-  { blade4Pin, CONFIGARRAY(simple_pwm_blade) },
-  { blade5Pin, CONFIGARRAY(simple_pwm_blade) },
-  
-  // LED6 for servo
-  { blade6Pin, CONFIGARRAY(simple_pwm_blade) },
+#ifdef CONFIG_PRESETS
+Preset presets[] = {
+  {"Skywalker", "tracks/venus.wav", 
+  StyleNormalPtr<CYAN, WHITE, 300, 800>(), "Ignition" }
 };
 
 // Define preset configurations
@@ -46,15 +35,6 @@ Preset presets[] = {
 
 #define MOTION_TIMEOUT 60 * 15 * 1000  // 15 minutes before motion timeout
 #define IDLE_OFF_TIME 60 * 10 * 1000   // 10 minutes idle before powering down
-
-#endif // CONFIG_H
-
-#ifdef CONFIG_PRESETS
-Preset presets[] = {
-  {"Skywalker", "tracks/venus.wav", 
-  StyleNormalPtr<CYAN, WHITE, 300, 800>(), "Ignition" }
-};
-
 
 struct myLED {
     static constexpr float MaxAmps = 1;
@@ -73,10 +53,24 @@ BladeConfig blades[] = {
  CONFIGARRAY(presets)}
 //  {255, SimpleBladePtr<CreeXPE2WhiteTemplate<0>, NoLED, NoLED, NoLED, bladePowerPin5, -1, -1, -1>()}
 };
-#endif
-// CONFIGARRAY(presets) 
-// SimpleBladePtr<LED1, LED2, LED3, LED4, pin1, pin2, pin3, pin4>
 
+// Define blade configurations for ProffieOS
+BladeConfig blades[] = {
+  // LED1 strip as first blade - simple on/off (no PWM)
+  { bladePin, CONFIGARRAY(simple_blade) },
+  
+  // LED2 strip as second blade - simple on/off (no PWM)
+  { blade2Pin, CONFIGARRAY(simple_blade) },
+  
+  // LED3-5 for motors (using PWM capability of blade pins)
+  { blade3Pin, CONFIGARRAY(simple_pwm_blade) },
+  { blade4Pin, CONFIGARRAY(simple_pwm_blade) },
+  { blade5Pin, CONFIGARRAY(simple_pwm_blade) },
+  
+  // LED6 for servo
+  { blade6Pin, CONFIGARRAY(simple_pwm_blade) },
+};
+#endif
 
 #ifdef CONFIG_BUTTONS
 Button PowerButton(BUTTON_POWER, powerButtonPin, "pow");
