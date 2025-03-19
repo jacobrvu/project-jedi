@@ -1,6 +1,6 @@
 #ifdef CONFIG_TOP
 #include "proffieboard_v3_config.h"
-#define NUM_BLADES 1
+#define NUM_BLADES 6
 #define NUM_BUTTONS 1
 #define VOLUME 2300
 const unsigned int maxLedsPerStrip = 144;
@@ -14,41 +14,42 @@ const unsigned int maxLedsPerStrip = 144;
 #ifdef CONFIG_PROPS
 #include "../props/saber.h"
 #include "../props/saber_fett263_buttons.h"
+#include "../props/spinning_lightsaber.h"  // Include our custom prop
 #endif
+// config.h for ProffieOS
+// Make sure this is included in your ProffieOS installation
 
+// Define blade configurations for ProffieOS
+BladeConfig blades[] = {
+  // LED1 strip as first blade - simple on/off (no PWM)
+  { bladePin, CONFIGARRAY(simple_blade) },
+  
+  // LED2 strip as second blade - simple on/off (no PWM)
+  { blade2Pin, CONFIGARRAY(simple_blade) },
+  
+  // LED3-5 for motors (using PWM capability of blade pins)
+  { blade3Pin, CONFIGARRAY(simple_pwm_blade) },
+  { blade4Pin, CONFIGARRAY(simple_pwm_blade) },
+  { blade5Pin, CONFIGARRAY(simple_pwm_blade) },
+  
+  // LED6 for servo
+  { blade6Pin, CONFIGARRAY(simple_pwm_blade) },
+};
 
-// #ifdef CONFIG_PRESETS
-// Preset presets[] = {
-//    { "tracks", "boot.wav",
-//     StyleNormalPtr<InOutSparkTip<EASYBLADE(BLUE, WHITE), 300, 800> >(), "cyan"},
-//    { "SmthJedi", "tracks/mars.wav",
-//     StylePtr<InOutSparkTip<EASYBLADE(BLUE, WHITE), 300, 800> >(), "blue"},
-//    { "SmthGrey", "tracks/mercury.wav",
-//     StyleFirePtr<RED, YELLOW>(), "fire"},
-//    { "SmthFuzz", "tracks/uranus.wav",
-//     StyleNormalPtr<RED, WHITE, 300, 800>(), "red"},
-//    { "RgueCmdr", "tracks/venus.wav",
-//     StyleFirePtr<BLUE, CYAN>(), "blue fire"},
-//    { "TthCrstl", "tracks/mars.wav",
-//     StylePtr<InOutHelper<EASYBLADE(OnSpark<GREEN>, WHITE), 300, 800> >(), "green"},
-//    { "TeensySF", "tracks/mercury.wav",
-//     StyleNormalPtr<WHITE, RED, 300, 800, RED>(), "white"},
-//    { "SmthJedi", "tracks/uranus.wav",
-//     StyleNormalPtr<AudioFlicker<YELLOW, WHITE>, BLUE, 300, 800>(), "yellow"},
-//    { "SmthGrey", "tracks/venus.wav",
-//     StylePtr<InOutSparkTip<EASYBLADE(MAGENTA, WHITE), 300, 800> >(), "magenta"},
-//    { "SmthFuzz", "tracks/mars.wav",
-//     StyleNormalPtr<Gradient<RED, BLUE>, Gradient<CYAN, YELLOW>, 300, 800>(), "gradient"},
-//    { "RgueCmdr", "tracks/mercury.wav",
-//     StyleRainbowPtr<300, 800>(), "rainbow"},
-//    { "TthCrstl", "tracks/uranus.wav",
-//     StyleStrobePtr<WHITE, Rainbow, 15, 300, 800>(), "strobe"},
-//    { "TeensySF", "tracks/venus.wav",
-//     &style_pov, "POV"},
-//    { "SmthJedi", "tracks/mars.wav",
-//     &style_charging, "Battery\nLevel"}
-// };
+// Define preset configurations
+Preset presets[] = {
+  // Use our custom SpinningLightsaberProp for all presets
+  { "SpinActivated", "tracks/track1.wav", &style_charging, "Spinning Activation Mode"},
+};
 
+// Use our custom prop
+#define PROP_CLASS SpinningLightsaberProp
+#define PROP_TYPE ProffieOSPropHandle<PROP_CLASS>
+
+#define MOTION_TIMEOUT 60 * 15 * 1000  // 15 minutes before motion timeout
+#define IDLE_OFF_TIME 60 * 10 * 1000   // 10 minutes idle before powering down
+
+#endif // CONFIG_H
 
 #ifdef CONFIG_PRESETS
 Preset presets[] = {
