@@ -23,12 +23,6 @@ Preset presets[] = {
   StyleNormalPtr<CYAN, WHITE, 300, 800>(), "Ignition" }
 };
 
-// Define preset configurations
-Preset presets[] = {
-  // Use our custom SpinningLightsaberProp for all presets
-  { "SpinActivated", "tracks/track1.wav", &style_charging, "Spinning Activation Mode"},
-};
-
 // Use our custom prop
 #define PROP_CLASS SpinningLightsaberProp
 #define PROP_TYPE ProffieOSPropHandle<PROP_CLASS>
