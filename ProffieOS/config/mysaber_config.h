@@ -12,8 +12,6 @@ const unsigned int maxLedsPerStrip = 144;
 #endif
 
 #ifdef CONFIG_PROPS
-#include "../props/saber.h"
-#include "../props/saber_fett263_buttons.h"
 #include "../props/spinning_lightsaber.h"  // Include our custom prop
 #endif
 
