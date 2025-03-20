@@ -26,15 +26,15 @@ public:
   SpinState spin_state_ = STOPPED;
   
   // Pin definitions
-  static const int LED_STRIP_1_PIN = bladePin;     // LED1 pin for LED strip 1
-  static const int LED_STRIP_2_PIN = blade2Pin;    // LED2 pin for LED strip 2
-  static const int RETRACTION_MOTOR_1_PIN = blade3Pin; // LED3 pin for retraction motor 1
-  static const int RETRACTION_MOTOR_2_PIN = blade4Pin; // LED4 pin for retraction motor 2
-  static const int CANE_ROTATION_MOTOR_PIN = blade5Pin; // LED5 pin for cane rotation motor
+  static const int LED_STRIP_1_PIN = bladePowerPin;     // LED1 pin for LED strip 1
+  static const int LED_STRIP_2_PIN = bladePowerPin2;    // LED2 pin for LED strip 2
+  static const int RETRACTION_MOTOR_1_PIN = bladePowerPin3; // LED3 pin for retraction motor 1
+  static const int RETRACTION_MOTOR_2_PIN = bladePowerPin4; // LED4 pin for retraction motor 2
+  static const int CANE_ROTATION_MOTOR_PIN = bladePowerPin5; // LED5 pin for cane rotation motor
   
   // Servo setup - now using LED6 pin
   Servo linear_servo_;
-  static const int SERVO_PIN = blade6Pin;  // Using LED6 pin for servo control
+  static const int SERVO_PIN = bladePowerPin6;  // Using LED6 pin for servo control
   static const int SERVO_LEFT_POS = 1000;  // Servo pulse width for left position (μs)
   static const int SERVO_RIGHT_POS = 2000; // Servo pulse width for right position (μs)
   
