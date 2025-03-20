@@ -41,19 +41,25 @@ struct myLED {
     static const int Blue = 255;
 };
 
+struct myMotor {
+    static constexpr float MaxAmps = 1;
+    static constexpr float MaxVolts = 15; 
+    static constexpr float P2Amps= 0.5;
+    static constexpr float P2Volts = 7.5;
+    static constexpr float R = 0;
+    static const int Red = 0;
+    static const int Green = 0;
+    static const int Blue = 0;
+};
 
 BladeConfig blades[] = {
  { 0, SimpleBladePtr<myLED, NoLED, NoLED, NoLED, bladePowerPin1, -1, -1, -1>(), 
+SimpleBladePtr<myLED, NoLED, NoLED, NoLED, bladePowerPin2, -1, -1, -1>(),
+SimpleBladePtr<myMotor, NoLED, NoLED, NoLED, bladePowerPin3, -1, -1, -1>(),
+SimpleBladePtr<myMotor, NoLED, NoLED, NoLED, bladePowerPin4, -1, -1, -1>(),
+SimpleBladePtr<myMotor, NoLED, NoLED, NoLED, bladePowerPin5, -1, -1, -1>(),
+ServoBladePtr<bladePowerPin6>(),
  CONFIGARRAY(presets)}
- { 0, SimpleBladePtr<myLED, NoLED, NoLED, NoLED, bladePowerPin2, -1, -1, -1>(), 
- CONFIGARRAY(presets)}
- { 0, SimpleBladePtr<myLED, NoLED, NoLED, NoLED, bladePowerPin3, -1, -1, -1>(), 
- CONFIGARRAY(presets)}
- { 0, SimpleBladePtr<myLED, NoLED, NoLED, NoLED, bladePowerPin4, -1, -1, -1>(), 
- CONFIGARRAY(presets)}
- { 0, SimpleBladePtr<myLED, NoLED, NoLED, NoLED, bladePowerPin5, -1, -1, -1>(), 
- CONFIGARRAY(presets)}
- { ServoBladePtr<bladePowerPin6>() }
 };
 
 #endif
