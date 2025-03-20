@@ -43,27 +43,19 @@ struct myLED {
 
 
 BladeConfig blades[] = {
- { 0, SimpleBladePtr<myLED, NoLED, NoLED, NoLED, bladePowerPin1, bladePowerPin2, bladePowerPin3, bladePowerPin4>(), 
+ { 0, SimpleBladePtr<myLED, NoLED, NoLED, NoLED, bladePowerPin1, -1, -1, -1>(), 
  CONFIGARRAY(presets)}
-//  {255, SimpleBladePtr<CreeXPE2WhiteTemplate<0>, NoLED, NoLED, NoLED, bladePowerPin5, -1, -1, -1>()}
+ { 0, SimpleBladePtr<myLED, NoLED, NoLED, NoLED, bladePowerPin2, -1, -1, -1>(), 
+ CONFIGARRAY(presets)}
+ { 0, SimpleBladePtr<myLED, NoLED, NoLED, NoLED, bladePowerPin3, -1, -1, -1>(), 
+ CONFIGARRAY(presets)}
+ { 0, SimpleBladePtr<myLED, NoLED, NoLED, NoLED, bladePowerPin4, -1, -1, -1>(), 
+ CONFIGARRAY(presets)}
+ { 0, SimpleBladePtr<myLED, NoLED, NoLED, NoLED, bladePowerPin5, -1, -1, -1>(), 
+ CONFIGARRAY(presets)}
+ { ServoBladePtr<bladePowerPin6>() }
 };
 
-// Define blade configurations for ProffieOS
-BladeConfig blades[] = {
-  // LED1 strip as first blade - simple on/off (no PWM)
-  { bladePin, CONFIGARRAY(simple_blade) },
-  
-  // LED2 strip as second blade - simple on/off (no PWM)
-  { blade2Pin, CONFIGARRAY(simple_blade) },
-  
-  // LED3-5 for motors (using PWM capability of blade pins)
-  { blade3Pin, CONFIGARRAY(simple_pwm_blade) },
-  { blade4Pin, CONFIGARRAY(simple_pwm_blade) },
-  { blade5Pin, CONFIGARRAY(simple_pwm_blade) },
-  
-  // LED6 for servo
-  { blade6Pin, CONFIGARRAY(simple_pwm_blade) },
-};
 #endif
 
 #ifdef CONFIG_BUTTONS
