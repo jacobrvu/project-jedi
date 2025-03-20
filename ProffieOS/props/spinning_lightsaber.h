@@ -25,7 +25,7 @@ public:
   };
   SpinState spin_state_ = STOPPED;
   
-  // Pin definitions - updated per your request
+  // Pin definitions
   static const int LED_STRIP_1_PIN = bladePin;     // LED1 pin for LED strip 1
   static const int LED_STRIP_2_PIN = blade2Pin;    // LED2 pin for LED strip 2
   static const int RETRACTION_MOTOR_1_PIN = blade3Pin; // LED3 pin for retraction motor 1
@@ -184,26 +184,6 @@ public:
   bool Event(enum BUTTON button, EVENT event) override {
     // We're letting the spin detection handle activation/deactivation
     // but keep standard event handling for other functions
-    
-    // Optional: Add manual override for testing
-    if (button == BUTTON_POWER && event == EVENT_DOUBLE_CLICK) {
-      if (!is_on_) {
-        ActivateSaber();
-        spin_state_ = SPINNING;
-      } else {
-        BeginRetraction();
-        spin_state_ = SLOWING;
-        
-        // Add a timer to fully power off after 2 seconds
-        // to simulate complete stop if testing without IMU
-        delay_millis_add(2000, [this]() { 
-          DeactivateSaber();
-          spin_state_ = STOPPED;
-        });
-      }
-      return true;
-    }
-    
     return PropBase::Event(button, event);
   }
 };
