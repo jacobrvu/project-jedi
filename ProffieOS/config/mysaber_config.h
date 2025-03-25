@@ -29,10 +29,10 @@ Preset presets[] = {
 #define IDLE_OFF_TIME 60 * 10 * 1000   // 10 minutes idle before powering down
 
 struct myLED {
-    static constexpr float MaxAmps = 1;
-    static constexpr float MaxVolts = 15; 
-    static constexpr float P2Amps= 0.5;
-    static constexpr float P2Volts = 7.5;
+    static constexpr float MaxAmps = 1.5;
+    static constexpr float MaxVolts = 16;
+    static constexpr float P2Amps= 0.75;
+    static constexpr float P2Volts = 8;
     static constexpr float R = 0;
     static const int Red = 0;
     static const int Green = 0;
