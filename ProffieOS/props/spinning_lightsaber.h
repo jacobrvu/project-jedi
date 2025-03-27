@@ -81,7 +81,7 @@ public:
     float rotation_speed = GetRotationSpeed();
     
     // Check for servo return timing
-    if (servo_return_time_ && millis() > servo_return_time_) {
+    if (millis() > servo_return_time_) {
       linear_servo_.WriteMicroseconds(SERVO_LEFT_POS); // Return to left position
       servo_return_time_ = 0; // Reset timer
     }
