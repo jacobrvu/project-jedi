@@ -22,8 +22,8 @@ Preset presets[] = {
 };
 
 // Use our custom prop
-#define PROP_CLASS SpinningLightsaberProp
-#define PROP_TYPE ProffieOSPropHandle<PROP_CLASS>
+// #define PROP_CLASS SpinningLightsaberProp
+// #define PROP_TYPE ProffieOSPropHandle<PROP_CLASS>
 
 #define MOTION_TIMEOUT 60 * 15 * 1000  // 15 minutes before motion timeout
 #define IDLE_OFF_TIME 60 * 10 * 1000   // 10 minutes idle before powering down
