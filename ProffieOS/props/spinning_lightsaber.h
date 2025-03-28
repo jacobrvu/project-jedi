@@ -7,7 +7,9 @@
 #include "sound/hybrid_font.h"
 #include "motion/motion_util.h"
 
-class SpinningLightsaberProp : public PropBase {
+#define PROP_TYPE SpinningLightsaberProp
+
+class SpinningLightsaberProp : public PROP_INHERIT_PREFIX PropBase {
 public:
   SpinningLightsaberProp() : PropBase() {}
   
@@ -61,7 +63,7 @@ public:
     
     // Initialize servo
     LSanalogWriteSetup(SERVO_PIN, PWM_USECASE::SERVO);
-    LSanalogWrite(SERVO_PIN, SERVO_LEFT_POS) // Start in left (retracted) position
+    LSanalogWrite(SERVO_PIN, SERVO_LEFT_POS); // Start in left (retracted) position
   }
 
   // Function to check if the saber is currently activated
@@ -180,12 +182,6 @@ public:
     LSanalogWrite(SERVO_PIN, SERVO_LEFT_POS);
   }
   
-  // ProffieOS-specific event handling
-  bool Event(enum BUTTON button, EVENT event) override {
-    // We're letting the spin detection handle activation/deactivation
-    // but keep standard event handling for other functions
-    return PropBase::Event(button, event);
-  }
 };
 
 #endif // PROPS_SPINNING_LIGHTSABER_H
