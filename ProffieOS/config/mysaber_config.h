@@ -30,10 +30,10 @@ Preset presets[] = {
 
 struct myLED {
     static constexpr float MaxAmps = 1.5;
-    static constexpr float MaxVolts = 16;
+    static constexpr float MaxVolts = 18;
     static constexpr float P2Amps= 0.75;
-    static constexpr float P2Volts = 8;
-    static constexpr float R = 0;
+    static constexpr float P2Volts = 9;
+    static constexpr float R = 10000;
     static const int Red = 0;
     static const int Green = 0;
     static const int Blue = 255;
