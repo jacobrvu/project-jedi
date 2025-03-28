@@ -40,6 +40,7 @@ public:
   
   bool rotating_chassis_spin_on_ = false;
   uint32_t servo_return_time_ = 0;
+  uint32_t sound_deactivation_time_ = 0;
 
   void Setup() override {
     PropBase::Setup();
@@ -79,6 +80,12 @@ public:
     if (millis() > servo_return_time_) {
       LSanalogWrite(SERVO_PIN, SERVO_LEFT_POS); // Return to left position
       servo_return_time_ = 0; // Reset timer
+    }
+
+    // Check for deactivation sound
+    if (sound_deactivation_time_ > 0 && millis() > sound_deactivation_time_) {
+    hybrid_font.PlayCommon(&SFX_poweroff); // Play deactivation sound
+      sound_deactivation_time_ = 0; // Reset timer
     }
     
     // State machine for saber control
@@ -136,15 +143,16 @@ public:
     // Schedule servo to return after 500ms
     servo_return_time_ = millis() + 500;
     
-    // Turn on retraction motors with PWM at 50% power
-    analogWrite(RETRACTION_MOTOR_1_PIN, 127);
-    analogWrite(RETRACTION_MOTOR_2_PIN, 127);
+    // Turn on retraction motors with PWM at 20% power
+    analogWrite(RETRACTION_MOTOR_1_PIN, 50);
+    analogWrite(RETRACTION_MOTOR_2_PIN, 50);
   }
   
   // Begin retraction sequence when spinning slows
   void BeginRetraction() {
-    // Play retraction sound
-    hybrid_font.PlayCommon(&SFX_lock);
+    
+    // Schedule deactivation sound after 3000ms
+    sound_deactivation_time_ = millis() + 3000;
     
     // Turn on cane rotation motor
     digitalWrite(CANE_ROTATION_MOTOR_PIN, HIGH);
@@ -158,9 +166,6 @@ public:
   void DeactivateSaber() {
     if (!is_on_) return;
     is_on_ = false;
-    
-    // Play deactivation sound
-    hybrid_font.PlayCommon(&SFX_poweroff);
     
     // Turn off LED strips
     digitalWrite(LED_STRIP_1_PIN, LOW);
