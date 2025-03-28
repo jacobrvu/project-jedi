@@ -13,7 +13,7 @@ const unsigned int maxLedsPerStrip = 144;
 #define IDLE_OFF_TIME 60 * 10 * 1000   // 10 minutes idle before powering down
 #endif
 
-#ifdef CONFIG_PROPS
+#ifdef CONFIG_PROP
 #include "../props/spinning_lightsaber.h"  // Include our custom prop
 #endif
 
