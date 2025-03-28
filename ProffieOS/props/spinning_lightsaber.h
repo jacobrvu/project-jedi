@@ -7,6 +7,7 @@
 #include "sound/hybrid_font.h"
 #include "motion/motion_util.h"
 
+#undef PROP_TYPE
 #define PROP_TYPE SpinningLightsaberProp
 
 class SpinningLightsaberProp : public PROP_INHERIT_PREFIX PropBase {
