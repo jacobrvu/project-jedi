@@ -18,7 +18,7 @@ const unsigned int maxLedsPerStrip = 144;
 #ifdef CONFIG_PRESETS
 Preset presets[] = {
   {"Skywalker", "tracks/venus.wav", 
-  StyleNormalPtr<CYAN, WHITE, 300, 800>(), "Ignition" }
+  StyleNormalPtr<CYAN, WHITE, 300, 800>(), StyleNormalPtr<CYAN, WHITE, 300, 800>(), "Ignition" }
 };
 
 // Use our custom prop
