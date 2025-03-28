@@ -9,6 +9,8 @@ const unsigned int maxLedsPerStrip = 144;
 #define ENABLE_MOTION
 #define ENABLE_WS2811
 #define ENABLE_SD
+#define MOTION_TIMEOUT 60 * 15 * 1000  // 15 minutes before motion timeout
+#define IDLE_OFF_TIME 60 * 10 * 1000   // 10 minutes idle before powering down
 #endif
 
 #ifdef CONFIG_PROPS
@@ -20,13 +22,6 @@ Preset presets[] = {
   {"Skywalker", "tracks/venus.wav", 
   StyleNormalPtr<CYAN, WHITE, 300, 800>(), StyleNormalPtr<CYAN, WHITE, 300, 800>(), "Ignition" }
 };
-
-// Use our custom prop
-// #define PROP_CLASS SpinningLightsaberProp
-// #define PROP_TYPE ProffieOSPropHandle<PROP_CLASS>
-
-#define MOTION_TIMEOUT 60 * 15 * 1000  // 15 minutes before motion timeout
-#define IDLE_OFF_TIME 60 * 10 * 1000   // 10 minutes idle before powering down
 
 struct myLED {
     static constexpr float MaxAmps = 1.5;
